@@ -44,6 +44,39 @@ class Cubo implements Dibujable{
     public void setMiembros(ArrayList<MiembroEquipo> miembros) {
         this.miembros = miembros;
     }
+
+    public boolean isAsignado() {
+        return asignado;
+    }
+
+    public void setAsignado(boolean asignado) {
+        this.asignado = asignado;
+    }
+
+    public boolean isExcavable() {
+        return excavable;
+    }
+
+    public void setExcavable(boolean excavable) {
+        this.excavable = excavable;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public int getDificultad() {
+        return dificultad;
+    }
+
+    public void setDificultad(int dificultad) {
+        this.dificultad = dificultad;
+    }
+    
     
     
     //constructor

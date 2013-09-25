@@ -118,8 +118,8 @@ class Mapa {
         y--;
         z--;
         
-        //verificar que las coordenadas estén en el rango
-        if (enRango(x,y,z)){
+        //verificar que las coordenadas estén en el rango y que el cubo sea excavable
+        if (enRango(x,y,z)||(!distribucion[x][y][z].isExcavable())){
             flag = false;
         }
         else{
@@ -133,6 +133,8 @@ class Mapa {
             if ((numBroc>=broc)&&(numBadi>=badi)&&(numO>=o)&&(numEg>=eg)&&(numEf>=ef)){
                 //transferir recursos desde el jugador al cubo
                 transferirRecursos(jugador, distribucion[x][y][z], o, eg, ef, badi, broc);
+                //calcular el tiempo de excavación
+                double velocidadTotal;
             }
             else{
                 flag = false;
@@ -161,7 +163,7 @@ class Mapa {
         }
         
         //transferir estudiante de generales
-        for (l=0;l<o;l++){
+        for (l=0;l<eg;l++){
             //remover un recurso de arqueologo y agregarlo al cubo
             int m = 0;
             
@@ -174,7 +176,7 @@ class Mapa {
         }
  
         //transferir estudiante de facultad
-        for (l=0;l<o;l++){
+        for (l=0;l<ef;l++){
             //remover un recurso de arqueologo y agregarlo al cubo
             int m = 0;
             
@@ -187,7 +189,7 @@ class Mapa {
         }
        
         //transferir badilejo
-        for (l=0;l<o;l++){
+        for (l=0;l<badi;l++){
             //remover un recurso de arqueologo y agregarlo al cubo
             int m = 0;
             
@@ -199,8 +201,8 @@ class Mapa {
             jugador.herramientas.remove(m);
         }
         
-        //transferir obrero
-        for (l=0;l<o;l++){
+        //transferir brocha
+        for (l=0;l<broc;l++){
             //remover un recurso de arqueologo y agregarlo al cubo
             int m = 0;
             
