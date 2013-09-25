@@ -81,7 +81,7 @@ class InterpreteComandos {
         else if (comando.compareTo("asignar")==0){
              if (conParametros){
                 comando = s.substring(indice);
-                if (obtenerParametros(comando,parametros)==6){
+                if (obtenerParametros(comando,parametros)==8){
                     rValue = 2;
                 }
                 else{

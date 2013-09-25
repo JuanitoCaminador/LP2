@@ -172,7 +172,7 @@ public class Juego {
             System.out.println("Asignacion exitosa");
         }
         else{
-            System.out.println("No se pudo asignar el equipo al cubo especificado");
+            System.out.println("No se pudo asignar el equipo al cubo especificado, verifique que cuenta con los recursos necesarios");
         }
         System.out.println("***"); 
     }

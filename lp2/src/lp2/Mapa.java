@@ -111,7 +111,109 @@ class Mapa {
     }
     
     public boolean asignar(Arqueologo jugador, int x, int y, int z, int o, int eg, int ef, int badi, int broc){
-        return true;
+        //variables
+        boolean flag = true;
+        
+        x--;
+        y--;
+        z--;
+        
+        //verificar que las coordenadas estén en el rango
+        if (enRango(x,y,z)){
+            flag = false;
+        }
+        else{
+            //verificar que se tengan los suficientes miembros disponibles
+            int numBroc = jugador.numBroc();
+            int numBadi = jugador.numBadi();
+            int numO = jugador.numObreros();
+            int numEg = jugador.numEg();
+            int numEf = jugador.numEf();
+            
+            if ((numBroc>=broc)&&(numBadi>=badi)&&(numO>=o)&&(numEg>=eg)&&(numEf>=ef)){
+                //transferir recursos desde el jugador al cubo
+                transferirRecursos(jugador, distribucion[x][y][z], o, eg, ef, badi, broc);
+            }
+            else{
+                flag = false;
+            }
+            
+        }
+        
+        return flag;
     }
+    
+    public void transferirRecursos(Arqueologo jugador, Cubo c, int o, int eg, int ef, int badi, int broc){
+        //variables
+        int l;
+
+        //transferir obrero
+        for (l=0;l<o;l++){
+            //remover un recurso de arqueologo y agregarlo al cubo
+            int m = 0;
+            
+            while (!(jugador.miembros.get(m) instanceof Obrero)){
+                m++;
+            }
+            
+            c.miembros.add(jugador.miembros.get(m));
+            jugador.miembros.remove(m);
+        }
+        
+        //transferir estudiante de generales
+        for (l=0;l<o;l++){
+            //remover un recurso de arqueologo y agregarlo al cubo
+            int m = 0;
+            
+            while (!(jugador.miembros.get(m) instanceof EstudianteGenerales)){
+                m++;
+            }
+            
+            c.miembros.add(jugador.miembros.get(m));
+            jugador.miembros.remove(m);
+        }
+ 
+        //transferir estudiante de facultad
+        for (l=0;l<o;l++){
+            //remover un recurso de arqueologo y agregarlo al cubo
+            int m = 0;
+            
+            while (!(jugador.miembros.get(m) instanceof EstudianteFacultad)){
+                m++;
+            }
+            
+            c.miembros.add(jugador.miembros.get(m));
+            jugador.miembros.remove(m);
+        }
        
+        //transferir badilejo
+        for (l=0;l<o;l++){
+            //remover un recurso de arqueologo y agregarlo al cubo
+            int m = 0;
+            
+            while (!(jugador.herramientas.get(m) instanceof Badilejo)){
+                m++;
+            }
+            
+            c.herramientas.add(jugador.herramientas.get(m));
+            jugador.herramientas.remove(m);
+        }
+        
+        //transferir obrero
+        for (l=0;l<o;l++){
+            //remover un recurso de arqueologo y agregarlo al cubo
+            int m = 0;
+            
+            while (!(jugador.herramientas.get(m) instanceof Brocha)){
+                m++;
+            }
+            
+            c.herramientas.add(jugador.herramientas.get(m));
+            jugador.herramientas.remove(m);
+        }        
+    }
+    
+    public boolean enRango(int x, int y, int z){
+        return((x>0)&&(y>0)&&(z>0)&&(x<i)&&(y<j)&&(z<k));
+    }
 }

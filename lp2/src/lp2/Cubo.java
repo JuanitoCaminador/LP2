@@ -22,11 +22,29 @@ class Cubo implements Dibujable{
     private boolean asignado;//el cubo ha sido asignado
     private boolean excavable;//el cubo es excavable
     private PiezaArqueologica pieza;//el cubo contiene una pieza
-    private ArrayList<Herramienta> herramientas;//almacena las herramientas asignadas al cubo
-    private ArrayList<MiembroEquipo> miembros;//almacena los miembros de equipo asignados al cubo
+    public ArrayList<Herramienta> herramientas;//almacena las herramientas asignadas al cubo
+    public ArrayList<MiembroEquipo> miembros;//almacena los miembros de equipo asignados al cubo
     private int x;
     private int y;
     private int z;
+    
+    //getters y setters
+    public ArrayList<Herramienta> getHerramientas() {
+        return herramientas;
+    }
+
+    public void setHerramientas(ArrayList<Herramienta> herramientas) {
+        this.herramientas = herramientas;
+    }
+
+    public ArrayList<MiembroEquipo> getMiembros() {
+        return miembros;
+    }
+
+    public void setMiembros(ArrayList<MiembroEquipo> miembros) {
+        this.miembros = miembros;
+    }
+    
     
     //constructor
     public Cubo(int concentracion,int spawningRocas,int civi, boolean excavable, int x, int y, int z)
@@ -159,6 +177,8 @@ class Cubo implements Dibujable{
         }       
     }
     
+    
+    
     //seleccionar una pieza para ponerla en el cubo
     private PiezaArqueologica sacarAlgo(ArrayList<PiezaArqueologica> miListaObjetos, int concetracion)
     {
@@ -209,4 +229,54 @@ class Cubo implements Dibujable{
     public void imprime(){
         
     }
+    
+        public int numObreros(){
+        int num = 0;
+        for (MiembroEquipo m : miembros){
+            if (m instanceof Obrero){
+                num++;
+            }
+        }
+        return num;
+    }
+    
+    public int numEg(){
+        int num = 0;
+        for (MiembroEquipo m : miembros){
+            if (m instanceof EstudianteGenerales){
+                num++;
+            }
+        }
+        return num;    
+    }
+    
+    public int numEf(){
+        int num = 0;
+        for (MiembroEquipo m : miembros){
+            if (m instanceof EstudianteFacultad){
+                num++;
+            }
+        }
+        return num;        
+    }
+    
+    public int numBadi(){
+        int num = 0;
+        for (Herramienta h : herramientas){
+            if (h instanceof Badilejo){
+                num++;
+            }
+        }
+        return num;           
+    }
+    
+    public int numBroc(){
+        int num = 0;
+        for (Herramienta h : herramientas){
+            if (h instanceof Brocha){
+                num++;
+            }
+        }
+        return num;
+    }    
 }

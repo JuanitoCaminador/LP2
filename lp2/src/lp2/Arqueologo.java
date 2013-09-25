@@ -21,10 +21,35 @@ class Arqueologo {
     private double tiempo;
     private int puntos;
     private int civi;
-    private ArrayList<Cubo> listaExcavacion;
-    private ArrayList<MiembroEquipo> listaMiembro;
-    private ArrayList<Herramienta> listaHerramienta;
+    public ArrayList<Cubo> cubos;
+    public ArrayList<MiembroEquipo> miembros;
+    public ArrayList<Herramienta> herramientas;
 
+    //Getters y setters
+    public ArrayList<Cubo> getCubos() {
+        return cubos;
+    }
+
+    public void setCubos(ArrayList<Cubo> cubos) {
+        this.cubos = cubos;
+    }
+
+    public ArrayList<MiembroEquipo> getMiembros() {
+        return miembros;
+    }
+
+    public void setMiembros(ArrayList<MiembroEquipo> miembros) {
+        this.miembros = miembros;
+    }
+
+    public ArrayList<Herramienta> getHerramientas() {
+        return herramientas;
+    }
+
+    public void setHerramientas(ArrayList<Herramienta> herramientas) {
+        this.herramientas = herramientas;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -66,26 +91,77 @@ class Arqueologo {
     }
 
     Arqueologo(){
-        listaExcavacion = new ArrayList<>();
-        listaMiembro = new ArrayList<>();
-        listaHerramienta = new ArrayList<>();
+        cubos = new ArrayList<>();
+        miembros = new ArrayList<>();
+        herramientas = new ArrayList<>();
     }
     
     public void addMiembro(MiembroEquipo m){
-        listaMiembro.add(m);
+        miembros.add(m);
     }
     
     public void addHerramienta(Herramienta h){
-        listaHerramienta.add(h);
+        herramientas.add(h);
     }
     
     public void addCubo(Cubo c){
-        listaExcavacion.add(c);
+        cubos.add(c);
     }
     
     public void inicializar(){
         plata = PLATAINICIAL;
         tiempo = TIEMPOINICIAL;
         puntos = PUNTOSINICIAL;
+    }
+    
+    public int numObreros(){
+        int num = 0;
+        for (MiembroEquipo m : miembros){
+            if (m instanceof Obrero){
+                num++;
+            }
+        }
+        return num;
+    }
+    
+    public int numEg(){
+        int num = 0;
+        for (MiembroEquipo m : miembros){
+            if (m instanceof EstudianteGenerales){
+                num++;
+            }
+        }
+        return num;    
+    }
+    
+    public int numEf(){
+        int num = 0;
+        for (MiembroEquipo m : miembros){
+            if (m instanceof EstudianteFacultad){
+                num++;
+            }
+        }
+        return num;        
+    }
+    
+    public int numBadi(){
+        int num = 0;
+        for (Herramienta h : herramientas){
+            if (h instanceof Badilejo){
+                num++;
+            }
+        }
+        return num;        
+        
+    }
+    
+    public int numBroc(){
+        int num = 0;
+        for (Herramienta h : herramientas){
+            if (h instanceof Brocha){
+                num++;
+            }
+        }
+        return num;          
     }
 }
